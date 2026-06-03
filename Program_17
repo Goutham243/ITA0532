@@ -1,0 +1,16 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+img = cv2.imread('Goutham.jpg')
+
+if img is not None:
+    kernel = np.ones((5,5), np.uint8)
+    dilation = cv2.dilate(img, kernel, iterations=1)
+
+    print("Original Image (short code)")
+    cv2_imshow(img)
+    print("Dilation Image (short code)")
+    cv2_imshow(dilation)
+else:
+    print("Error: Image 'Goutham.jpg' not found. Please ensure it's uploaded.")
