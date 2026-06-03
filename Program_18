@@ -1,0 +1,22 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+from google.colab import files
+
+print("Please upload your image when prompted.")
+uploaded = files.upload()
+
+image_filename = next(iter(uploaded))
+
+img = cv2.imread(image_filename)
+
+if img is None:
+    print(f"Error: Could not read the image '{image_filename}'. Please make sure it was uploaded correctly.")
+else:
+    kernel = np.ones((5,5), np.uint8)
+
+    opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+    print("Original Image")
+    cv2_imshow(img)
+    print("Opening Image")
+    cv2_imshow(opening)
