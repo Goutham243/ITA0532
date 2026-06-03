@@ -1,0 +1,27 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+from google.colab import files
+
+# Upload image
+uploaded = files.upload()
+
+# Read image
+img = cv2.imread('Goutham.jpg')   # Replace with uploaded image name
+
+# Display original image
+print("Original Image")
+cv2_imshow(img)
+
+# Create kernel for erosion
+kernel = np.ones((5,5), np.uint8)
+
+# Apply Erode function
+erode_img = cv2.erode(img, kernel, iterations=1)
+
+# Display eroded image
+print("Eroded Image")
+cv2_imshow(erode_img)
+
+# Save eroded image
+cv2.imwrite('erode_image.jpg', erode_img)
