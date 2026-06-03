@@ -1,0 +1,26 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow # Import cv2_imshow
+
+# Read image
+img = cv2.imread('/Goutham.jpg') # Corrected filename from '/Goutham.jpg.jpg'
+
+# Check if image is loaded properly
+if img is None:
+    print('Error: Could not read the image /Goutham.jpg. Please ensure the file is uploaded and the name is correct.')
+else:
+    # Define points
+    pts1 = np.float32([[56,65],[368,52],[28,387],[389,390]])
+    pts2 = np.float32([[0,0],[300,0],[0,300],[300,300]])
+
+    # Perspective matrix
+    M = cv2.getPerspectiveTransform(pts1, pts2)
+
+    # Apply transformation
+    dst = cv2.warpPerspective(img, M, (300,300))
+
+    # Show images
+    print("Original Image")
+    cv2_imshow(img) # Replaced cv2.imshow with cv2_imshow
+    print("Perspective Image")
+    cv2_imshow(dst)
