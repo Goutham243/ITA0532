@@ -1,0 +1,13 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow # Import cv2_imshow
+img = cv2.imread('/Goutham.jpg') # Corrected filename from '/Goutham.jpg.jpg'
+if img is None:
+    print('Error: Could not read the image /Goutham.jpg. Please ensure the file is uploaded and the name is correct.')
+else:
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = np.float32(gray)
+    dst = cv2.cornerHarris(gray, 2, 3, 0.04)
+    img[dst > 0.01 * dst.max()] = [0, 0, 255]
+    print("Corners")
+    cv2_imshow(img) 
