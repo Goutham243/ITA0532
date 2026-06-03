@@ -1,0 +1,22 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow # Import cv2_imshow
+
+# Read image
+img = cv2.imread('Goutham.jpg')
+
+# Check if image is loaded properly
+if img is None:
+    print('Error: Could not read the image Goutham.jpg. Please ensure the file is uploaded and the name is correct.')
+else:
+    # Create kernel
+    kernel = np.ones((5,5), np.uint8)
+
+    # Dilate image
+    dilate = cv2.dilate(img, kernel, iterations=1)
+
+    # Show images using cv2_imshow
+    print("Original Image")
+    cv2_imshow(img)
+    print("Dilated Image")
+    cv2_imshow(dilate)
