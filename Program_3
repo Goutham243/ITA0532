@@ -1,0 +1,32 @@
+import cv2
+from google.colab.patches import cv2_imshow
+
+# Read video
+cap = cv2.VideoCapture('today.mp4')
+
+# Display video in slow motion
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+    cv2_imshow(frame) # Changed cv2.imshow to cv2_imshow
+    if cv2.waitKey(100) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+
+# Read video again
+cap = cv2.VideoCapture('today.mp4')
+
+# Display video in fast motion
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+    cv2_imshow(frame) # Changed cv2.imshow to cv2_imshow
+    if cv2.waitKey(10) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
