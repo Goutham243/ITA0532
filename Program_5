@@ -1,0 +1,12 @@
+import cv2
+from google.colab.patches import cv2_imshow # Import cv2_imshow
+
+img = cv2.imread('Goutham.jpg')
+
+big = cv2.resize(img, (800, 800))
+
+small = cv2.resize(img, (200, 200))
+
+cv2_imshow(img) # Replaced cv2.imshow with cv2_imshow
+cv2_imshow(big) # Replaced cv2.imshow with cv2_imshow
+cv2_imshow(small)
