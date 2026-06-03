@@ -1,0 +1,25 @@
+import cv2
+from google.colab.patches import cv2_imshow # Import cv2_imshow for Colab
+from google.colab import files # Import files for uploading
+
+print("Please upload your image when prompted.")
+uploaded = files.upload()
+
+image_filename = next(iter(uploaded))
+
+img = cv2.imread(image_filename)
+
+if img is None:
+    print(f"Error: Could not read the image '{image_filename}'. Please make sure it was uploaded correctly.")
+else:
+    if img.shape[0] > 200 and img.shape[1] > 200:
+        roi = img[50:200, 50:200]
+
+        if img.shape[0] > 400 and img.shape[1] > 400:
+            img[250:400, 250:400] = roi
+            print("Output Image with ROI pasted")
+            cv2_imshow(img)
+        else:
+            print("Error: Image is not large enough to paste the ROI at the specified coordinates.")
+    else:
+        print("Error: Image is not large enough for the specified ROI crop.")
