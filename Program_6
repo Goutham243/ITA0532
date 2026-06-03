@@ -1,0 +1,12 @@
+import cv2
+from google.colab.patches import cv2_imshow # Import cv2_imshow
+
+# Read image
+img = cv2.imread('Goutham.jpg')
+
+# Rotate 90 degree clockwise
+rot = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
+# Show images
+cv2_imshow(img) # Replaced cv2.imshow with cv2_imshow
+cv2_imshow(rot)
