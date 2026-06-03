@@ -1,0 +1,28 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow # Import cv2_imshow
+
+# Read image
+img = cv2.imread('/Goutham.jpg')
+
+# Check if image is loaded properly
+if img is None:
+    print('Error: Could not read the image Goutham.jpg. Please ensure the file is uploaded and the name is correct.')
+else:
+    rows, cols = img.shape[:2]
+
+    # Define points
+    pts1 = np.float32([[50,50],[200,50],[50,200]])
+    pts2 = np.float32([[10,100],[200,50],[100,250]])
+
+    # Affine transformation matrix
+    M = cv2.getAffineTransform(pts1, pts2)
+
+    # Apply transformation
+    dst = cv2.warpAffine(img, M, (cols, rows))
+
+    # Show images
+    print("Original Image")
+    cv2_imshow(img) # Replaced cv2.imshow with cv2_imshow
+    print("Affine Image")
+    cv2_imshow(dst)
