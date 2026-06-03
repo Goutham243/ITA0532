@@ -1,0 +1,20 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+from google.colab import files
+
+print("Please upload your image for the 'Top Hat' operation.")
+uploaded = files.upload()
+
+image_filename = next(iter(uploaded))
+
+img = cv2.imread(image_filename)
+if img is None:
+    print(f"Error: Could not read the image '{image_filename}'. Please make sure it was uploaded correctly.")
+else:
+    kernel = np.ones((5,5), np.uint8)
+    tophat = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel)
+    print("Original Image")
+    cv2_imshow(img)
+    print("Top Hat Image")
+    cv2_imshow(tophat)
